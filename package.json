@@ -1,0 +1,39 @@
+{
+  "name": "rollup-plugin-import-export",
+  "version": "0.0.1",
+  "description": "A rollup plugin to glob import and export.",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taiyuuki/rollup-plugin-import-export"
+  },
+  "bugs": "https://github.com/taiyuuki/rollup-plugin-import-export/issues",
+  "homepage": "https://github.com/taiyuuki/rollup-plugin-import-export#readme",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts ./",
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "rollup -c test/rollup.config.js"
+  },
+  "keywords": [],
+  "author": "taiyuuki <taiyuuki@qq.com>",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@taiyuuki/eslint-config-ts": "^0.0.5",
+    "@types/node": "^18.11.18",
+    "eslint": "^8.10.0",
+    "fast-glob": "^3.2.12",
+    "rollup": "^3.17.2",
+    "rollup-plugin-import-export": "link:.",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "tsup": "^6.4.0",
+    "typescript": "^4.5.4"
+  }
+}
