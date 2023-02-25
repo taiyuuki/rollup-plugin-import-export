@@ -16,7 +16,8 @@
     "lint": "eslint --ext .js,.ts ./ --fix",
     "dev": "tsup --watch",
     "build": "tsup",
-    "test": "rollup -c test/rollup.config.js"
+    "test": "rollup -c test/rollup.config.js",
+    "publish": "npm publish --registry=https://registry.npmjs.org"
   },
   "keywords": [],
   "author": "taiyuuki <taiyuuki@qq.com>",
