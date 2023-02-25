@@ -1,3 +1,3 @@
-declare module 'iem:./modules/*' {
-  export {}
+declare module 'glob:./modules/*' {
+  export { }
 }

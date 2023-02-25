@@ -5458,28 +5458,26 @@ var require_out4 = __commonJS({
 // src/index.ts
 var import_fast_glob = __toESM(require_out4(), 1);
 import path from "path";
-function importExportPlugin() {
-  const generatedCodes = /* @__PURE__ */ new Map();
+function importExportPlugin(options = { prefix: "iem" }) {
+  const code = /* @__PURE__ */ new Map();
   return {
     name: "rollup-plugin-import-export",
     async resolveId(source, importer) {
-      if (!source.startsWith("iem:") || !importer) {
+      if (!source.startsWith(options.prefix) || !importer) {
         return null;
       }
-      const sourceDir = source.replace("iem:", "");
+      const sourceDir = source.replace(`${options.prefix}:`, "");
       const resolveDir = path.dirname(importer);
-      const files = (await (0, import_fast_glob.default)(sourceDir, {
-        cwd: resolveDir
-      })).sort();
+      const files = (await (0, import_fast_glob.default)(sourceDir, { cwd: resolveDir })).sort();
       const importerCode = `
         ${files.map((module) => `export * from '${module}'`).join(";")}
       `;
       const tempId = path.join(resolveDir, source.replace(/\W/g, (c) => `_${c.codePointAt(0)}_`));
-      generatedCodes.set(tempId, importerCode);
+      code.set(tempId, importerCode);
       return tempId;
     },
     load(id) {
-      return generatedCodes.get(id);
+      return code.get(id);
     }
   };
 }

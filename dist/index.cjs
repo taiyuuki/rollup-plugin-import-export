@@ -5462,28 +5462,26 @@ __export(src_exports, {
 module.exports = __toCommonJS(src_exports);
 var import_fast_glob = __toESM(require_out4(), 1);
 var import_path = __toESM(require("path"), 1);
-function importExportPlugin() {
-  const generatedCodes = /* @__PURE__ */ new Map();
+function importExportPlugin(options = { prefix: "iem" }) {
+  const code = /* @__PURE__ */ new Map();
   return {
     name: "rollup-plugin-import-export",
     async resolveId(source, importer) {
-      if (!source.startsWith("iem:") || !importer) {
+      if (!source.startsWith(options.prefix) || !importer) {
         return null;
       }
-      const sourceDir = source.replace("iem:", "");
+      const sourceDir = source.replace(`${options.prefix}:`, "");
       const resolveDir = import_path.default.dirname(importer);
-      const files = (await (0, import_fast_glob.default)(sourceDir, {
-        cwd: resolveDir
-      })).sort();
+      const files = (await (0, import_fast_glob.default)(sourceDir, { cwd: resolveDir })).sort();
       const importerCode = `
         ${files.map((module2) => `export * from '${module2}'`).join(";")}
       `;
       const tempId = import_path.default.join(resolveDir, source.replace(/\W/g, (c) => `_${c.codePointAt(0)}_`));
-      generatedCodes.set(tempId, importerCode);
+      code.set(tempId, importerCode);
       return tempId;
     },
     load(id) {
-      return generatedCodes.get(id);
+      return code.get(id);
     }
   };
 }

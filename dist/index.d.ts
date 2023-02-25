@@ -1,5 +1,8 @@
 import { Plugin } from 'rollup';
 
-declare function importExportPlugin(): Plugin;
+interface ImportExportOptions {
+    prefix: string;
+}
+declare function importExportPlugin(options?: ImportExportOptions): Plugin;
 
 export { importExportPlugin };

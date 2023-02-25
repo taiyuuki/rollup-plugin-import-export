@@ -13,7 +13,7 @@
   "bugs": "https://github.com/taiyuuki/rollup-plugin-import-export/issues",
   "homepage": "https://github.com/taiyuuki/rollup-plugin-import-export#readme",
   "scripts": {
-    "lint": "eslint --ext .js,.ts ./",
+    "lint": "eslint --ext .js,.ts ./ --fix",
     "dev": "tsup --watch",
     "build": "tsup",
     "test": "rollup -c test/rollup.config.js"

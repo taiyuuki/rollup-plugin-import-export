@@ -9,7 +9,7 @@ const config = defineConfig({
     format: 'esm',
     preserveModules: true,
   },
-  plugins: [importExportPlugin(), ts()]
+  plugins: [importExportPlugin({ prefix: 'glob' }), ts()],
 })
 
 export default config

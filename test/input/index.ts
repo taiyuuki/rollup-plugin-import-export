@@ -1,5 +1,3 @@
-export * from 'iem:./modules/**/*'
+export * from 'glob:./modules/**/*'
 
-export default {
-  one: 1
-}
+export default { one: 1 }
